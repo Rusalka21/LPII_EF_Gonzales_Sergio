@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Libro</title>
+    <!-- Agregar la referencia a los archivos CSS de Bootstrap (localmente o a través de CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">Mi Aplicación</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+	   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Acerca de</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Libros</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Contacto</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	
+    <div class="container mt-5">
+        <h1 class="mt-5">Actualizar Libro</h1>
+        <form action="/libros/edit" method="post">
+			
+			<input type="hidden" th:value="${libro.id_libro}" name="id_libro" />			
+			
+            <div class="form-group">
+                <label for="nombre">Nombre de Libro</label>
+                <input type="text" class="form-control" id="nombre" name="nombre"
+                 placeholder="Ingrese el nombre del libro" th:value="${libro.nombre}" required>
+            </div>
+            <div class="form-group">
+                <label for="autor">Nombre del Autor</label>
+                <input type="text" class="form-control" id="autor" name="autor"
+                 placeholder="Ingrese el nombre del autor" th:value="${libro.autor}" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_publicacion">Fecha de Publicación</label>
+                <input type="date" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
+                 placeholder="Ingrese la fecha de publicación" th:value="${libro.fecha_publicacion}" required>
+            </div>
+            <div class="form-group">
+				<label for="id_genero">Género</label>
+                <select class="form-control" id="id_genero" name="id_genero">
+					<option th:each="genero: ${generos}" th:value="${genero.id_genero}"
+					 th:text="${genero.genero}" th:selected="${genero.id_genero == libro.genero.id_genero}">
+					 </option>
+				</select>
+            </div>  
+            <div class="form-group">
+                <label for="fecha_registro">Fecha de Registro</label>
+                <input type="date" class="form-control" id="fecha_registro" name="fecha_registro"
+                 placeholder="Ingrese la fecha de registro" th:value="${libro.fechaRegistro}" required>
+            </div>            
+                           
+
+            <button type="submit" class="btn btn-primary">Actualizar Libro</button>
+        </form>
+    </div>
+    
+    <!-- Agregar la referencia a los archivos JavaScript de Bootstrap (localmente o a través de CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
